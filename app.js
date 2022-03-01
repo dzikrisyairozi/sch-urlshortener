@@ -25,4 +25,14 @@ app.post('/shortener', async (req, res) =>{
    res.redirect('/');
 })
 
+app.get('/:shortUrl', async (req, res)=>{
+    const shortUrl = await ShortUrl.findOne({ shortUrl: req.params.shortUrl })
+    if ( shortUrl == null ) {
+        return res.sendStatus(404).json({
+            success: false,
+            msg : 'URL nor found!'
+        });
+    }
+})
+
 app.listen(process.env.PORT || 8000);
