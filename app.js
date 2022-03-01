@@ -33,6 +33,11 @@ app.get('/:shortUrl', async (req, res)=>{
             msg : 'URL nor found!'
         });
     }
+
+    shortUrl.clicks++;
+    shortUrl.save();
+
+    res.redirect(shortUrl.full);
 })
 
 app.listen(process.env.PORT || 8000);
