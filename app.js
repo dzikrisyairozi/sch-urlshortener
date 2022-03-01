@@ -1,4 +1,10 @@
 import express from 'express';
+import mongoose from 'mongoose';
+
+mongoose.connect('mongodb://localhost/urlshortener', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true
+})
 
 const app = express();
 
