@@ -21,7 +21,7 @@ app.get('/', async (req, res) => {
 })
 
 app.post('/shortener', async (req, res) =>{
-   await UrlShortener.create({ full: req.body.fullUrl });
+   await UrlShortener.create({ fullUrl: req.body.fullUrl });
    res.redirect('/');
 })
 
