@@ -13,11 +13,11 @@
                 <th>Clicks</th>
             </thead>
             <tbody>
-                <% shortUrls.forEach(shortUrl => { %>
+                <% shortUrls.forEach(urlShortener => { %>
                 <tr>
-                    <td><a href="<%= shortUrl.fullUrl %>"><%= shortUrl.fullUrl %></a></td>
-                    <td><a href="<%= shortUrl.shortUrl %>"><%= shortUrl.shortUrl %></a></td>
-                    <td><%= shortUrl.clicks %></td>
+                    <td><a href="<%= urlShortener.fullUrl %>"><%= urlShortener.fullUrl %></a></td>
+                    <td><a href="<%= urlShortener.shortUrl %>"><%= urlShortener.shortUrl %></a></td>
+                    <td><%= urlShortener.clicks %></td>
                 </tr>
                 <% }) %>
             </tbody>
