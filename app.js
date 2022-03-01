@@ -26,7 +26,7 @@ app.post('/shortener', async (req, res) =>{
 })
 
 app.get('/:shortUrl', async (req, res)=>{
-    const shortUrl = await ShortUrl.findOne({ shortUrl: req.params.shortUrl })
+    const shortUrl = await UrlShortener.findOne({ shortUrl: req.params.shortUrl })
     if ( shortUrl == null ) {
         return res.sendStatus(404).json({
             success: false,
@@ -37,7 +37,7 @@ app.get('/:shortUrl', async (req, res)=>{
     shortUrl.clicks++;
     shortUrl.save();
 
-    res.redirect(shortUrl.full);
+    res.redirect(shortUrl.fullUrl);
 })
 
 app.listen(process.env.PORT || 8000);
