@@ -1,7 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
 
-mongoose.connect('mongodb://localhost/urlshortener', {
+mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
