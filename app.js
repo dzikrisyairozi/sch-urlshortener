@@ -1,6 +1,7 @@
 import express from 'express';
 import mongoose from 'mongoose';
-import UrlShortener from './models/urlShortener.js'
+import homeRoutes from './routes/home.js'
+import shortenerRoutes from './routes/shortener.js'
 
 mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
@@ -8,36 +9,19 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 })
 
 const app = express();
+const PORT = process.env.PORT || 8000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use('/', homeRoutes);
+app.use('/shortener', shortenerRoutes);
 
-app.get('/', async (req, res) => {
-    const shortUrls = await UrlShortener.find();
-    res.render(
-        'index',
-        { shortUrls: shortUrls }
-    );
-})
-
-app.post('/shortener', async (req, res) =>{
-   await UrlShortener.create({ fullUrl: req.body.fullUrl });
-   res.redirect('/');
-})
-
-app.get('/:shortUrl', async (req, res)=>{
-    const shortUrl = await UrlShortener.findOne({ shortUrl: req.params.shortUrl })
-    if ( shortUrl == null ) {
-        return res.sendStatus(404).json({
-            success: false,
-            msg : 'URL nor found!'
-        });
+const start =  (req, res) => {
+    try{
+        app.listen(PORT, console.log(`Server running on port: http://localhost:${PORT}`));
+    }catch(err){
+        console.log(err);
     }
+}
 
-    shortUrl.clicks++;
-    shortUrl.save();
-
-    res.redirect(shortUrl.fullUrl);
-})
-
-app.listen(process.env.PORT || 8000);
+start();
