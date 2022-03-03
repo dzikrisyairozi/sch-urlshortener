@@ -1,7 +1,9 @@
 import express from "express";
+import dashboardController from "../controllers/dashboard.js";
 
-const router = express.router;
+const app = express();
+const router = express.Router();
 
-router.route("/").get(res.send("Dashboard"));
+router.route("/").get(dashboardController.getDashboard);
 
 export default router;
