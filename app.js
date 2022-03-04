@@ -14,6 +14,7 @@ const PORT = process.env.PORT || 8000;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use("/public",express.static("public"));
 app.use('/dashboard', dashboardRoutes);
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);

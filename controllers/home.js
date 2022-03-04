@@ -20,7 +20,8 @@ export const getShortUrl = async (req, res)=>{
     shortUrl.clicks++;
     shortUrl.save();
 
-    res.redirect(shortUrl.fullUrl);
+    const redirectUrl = shortUrl.fullUrl.includes("https://")?shortUrl.fullUrl:"https://"+shortUrl.fullUrl;
+    return res.redirect(redirectUrl);
 };
 
 export default {
