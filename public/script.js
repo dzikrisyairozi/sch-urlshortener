@@ -15,7 +15,14 @@ function handleEdit(originalShortUrl){
         type:"PUT",
         url:'/dashboard',
         data: {shortUrl : originalShortUrl, newShortUrl : shortEditUrl, newFullUrl : fullEditUrl},
-        success: (res)=>{console.log("success, " + res)}
+        context: 'this',
+            success: function(data) {
+                if(data == "success"){
+                    location.reload();
+                }
+                else{
+                    $("#shortWarning").text(data).css("color", "red");;
+                }
+            }
     })
-    location.reload();
 }
