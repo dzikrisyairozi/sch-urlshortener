@@ -16,6 +16,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);
 
+// Routes Middleware
+app.use('/api/user', authRoute);
+
+app.use('/api/posts/', postRoute);
+
 const start =  (req, res) => {
     try{
         app.listen(PORT, console.log(`Server running on port: http://localhost:${PORT}`));
