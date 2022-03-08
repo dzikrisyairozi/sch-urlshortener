@@ -40,7 +40,7 @@ export const signup_get = (req, res) => {
         res.status(201).json(user);
       }
       catch(err) {
-        const errors = handleErrors();
+        const errors = handleErrors(err);
         res.status(400).json({ errors });
       }
 }
