@@ -1,7 +1,7 @@
 import User from "../models/user.js"
 
 //handle error
-export const handleErrors = (err) => {
+const handleErrors = (err) => {
     console.log(err.message, err.code);
     let errors = { email: '', password: '' };
   
@@ -40,8 +40,8 @@ export const signup_get = (req, res) => {
         res.status(201).json(user);
       }
       catch(err) {
-        console.log(err);
-        res.status(400).send('error, user not created');
+        const errors = handleErrors();
+        res.status(400).json({ errors });
       }
 }
   
@@ -56,6 +56,5 @@ export default {
     signup_get,
     login_get,
     signup_post,
-    login_post,
-    handleErrors
+    login_post
 }
