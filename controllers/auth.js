@@ -8,9 +8,15 @@ export const signup_get = (req, res) => {
   
   export const signup_post = async (req, res) => {
     const { email, password } = req.body;
-
-    console.log(email, password);
-    res.send('new signup');
+    
+    try {
+        const user = await User.create({ email, password });
+        res.status(201).json(user);
+      }
+      catch(err) {
+        console.log(err);
+        res.status(400).send('error, user not created');
+      }
 }
   
   export const login_post = async (req, res) => {
