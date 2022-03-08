@@ -24,6 +24,14 @@ const handleErrors = (err) => {
     return errors;
 }
 
+// create json web token
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+  return jwt.sign({ id }, 'net ninja secret', {
+    expiresIn: maxAge
+  });
+};
+
 export const signup_get = (req, res) => {
     res.render('signup');
 }
@@ -37,6 +45,8 @@ export const signup_get = (req, res) => {
 
     try {
         const user = await User.create({ email, password });
+        const token = createToken(user._id);
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(201).json(user);
       }
       catch(err) {
