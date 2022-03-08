@@ -32,15 +32,6 @@ app.get('/set-cookies', (req, res) => {
 
 });
 
-app.get('/read-cookies', (req, res) => {
-
-  const cookies = req.cookies;
-  console.log(cookies.newUser);
-
-  res.json(cookies);
-
-});
-
 const start =  (req, res) => {
     try{
         app.listen(PORT, console.log(`Server running on port: http://localhost:${PORT}`));
