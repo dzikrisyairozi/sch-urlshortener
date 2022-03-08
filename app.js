@@ -16,7 +16,7 @@ app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);
-app.use(authRoutes);
+app.use('/auth', authRoutes);
 
 const start =  (req, res) => {
     try{
