@@ -1,3 +1,5 @@
+import User from "../models/user.js"
+
 export const signup_get = (req, res) => {
     res.render('signup');
 }
@@ -8,7 +10,7 @@ export const signup_get = (req, res) => {
   
   export const signup_post = async (req, res) => {
     const { email, password } = req.body;
-    
+
     try {
         const user = await User.create({ email, password });
         res.status(201).json(user);
