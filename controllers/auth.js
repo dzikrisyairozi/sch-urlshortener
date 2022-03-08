@@ -7,10 +7,16 @@ export const signup_get = (req, res) => {
 }
   
   export const signup_post = async (req, res) => {
+    const { email, password } = req.body;
+
+    console.log(email, password);
     res.send('new signup');
 }
   
   export const login_post = async (req, res) => {
+    const { email, password } = req.body;
+
+    console.log(email, password);
     res.send('user login');
 }
 
