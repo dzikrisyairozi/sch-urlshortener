@@ -20,18 +20,6 @@ app.use('/shortener', shortenerRoutes);
 app.use('/auth', authRoutes);
 app.use(cookieParser());
 
-// cookies
-app.get('/set-cookies', (req, res) => {
-
-  // res.setHeader('Set-Cookie', 'newUser=true');
-  
-  res.cookie('newUser', false);
-  res.cookie('isEmployee', true, { maxAge: 1000 * 60 * 60 * 24, httpOnly: true });
-
-  res.send('mamam nih cookies!');
-
-});
-
 const start =  (req, res) => {
     try{
         app.listen(PORT, console.log(`Server running on port: http://localhost:${PORT}`));
