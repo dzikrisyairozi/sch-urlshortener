@@ -1,5 +1,5 @@
 import mongoose from 'mongoose';
-import shortId from 'shortId';
+import shortId from 'shortid';
 
 const urlShortenerSchema = new mongoose.Schema({
     fullUrl:{

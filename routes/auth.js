@@ -1,9 +1,9 @@
-const router = require('express').Router();
-const bcrypt = require('bcryptjs/dist/bcrypt');
-const User = require('../models/User');
-const dotenv = require('dotenv');
-const jwt = require('jsonwebtoken');
-const { registerValidation, loginValidation } = require('../validation');
+import router from 'express'
+import bcrypt from 'bcryptjs/dist/bcrypt.js'
+import User from '../models/user.js'
+import dotenv from 'dotenv'
+import jwt from'jsonwebtoken'
+import { registerValidation, loginValidation } from '../validation.js'
 // const { process } = require('@hapi/joi/lib/errors');
 
 
@@ -56,4 +56,4 @@ router.post('/login', async (req, res) => {
 });
 
 
-module.exports = router;
+export default router;

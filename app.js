@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import homeRoutes from './routes/home.js'
 import shortenerRoutes from './routes/shortener.js'
+import authRoute from './routes/auth.js'
 
 mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
