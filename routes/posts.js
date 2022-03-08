@@ -1,15 +1,8 @@
-const router = require('express').Router();
-const verify = require('./verifyToken');
+import express from 'express'
+import posts from '../controllers/posts.js'
 
+const router = express.Router();
 
-router.get('/', verify, (req, res) => {
-    res.json({
-        posts: {
-            title: 'My First Post',
-            description: 'random data you shouldnt access'
-        }
-    });
-});
+router.route('/').get(posts.getPosts);
 
-
-module.exports = router;
+export default router;
