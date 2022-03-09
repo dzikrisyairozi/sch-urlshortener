@@ -13,10 +13,12 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 
 const app = express();
 const PORT = process.env.PORT || 8000;
-const { requireAuth } = reqAuth;
+const { requireAuth, checkUser } = reqAuth;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+
+app.get('*', checkUser);
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);
 app.use('/auth', authRoutes);
