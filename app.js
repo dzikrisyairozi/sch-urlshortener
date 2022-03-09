@@ -5,6 +5,7 @@ import homeRoutes from './routes/home.js'
 import shortenerRoutes from './routes/shortener.js'
 import authRoutes from './routes/auth.js'
 import reqAuth from './middleware/auth.js'
+import dashboardRoutes from './routes/dashboard.js'
 
 mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use(cookieParser());
 
 app.get('*', checkUser);
+app.use("/public",express.static("public"));
+app.use('/dashboard', requireAuth, dashboardRoutes);
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);
 app.use('/auth', authRoutes);

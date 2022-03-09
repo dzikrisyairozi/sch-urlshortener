@@ -9,14 +9,14 @@ export const requireAuth = (req, res, next) => {
     jwt.verify(token, 'sch url shortener', (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        res.redirect('/login');
+        res.redirect('/auth/login');
       } else {
         console.log(decodedToken);
         next();
       }
     });
   } else {
-    res.redirect('/login');
+    res.redirect('/auth/login');
   }
 };
 
@@ -31,6 +31,7 @@ export const checkUser = (req, res, next) => {
         } else {
           let user = await User.findById(decodedToken.id);
           res.locals.user = user;
+          console.log(user);
           next();
         }
       });

@@ -2,8 +2,9 @@ import UrlShortener from '../models/urlShortener.js'
 
 export const getHome = async (req, res) => {
     const shortUrls = await UrlShortener.find();
-    res.render(
-        'index',
+    return res.render(
+        'newIndex',
+        // 'index',
         { shortUrls: shortUrls }
     );
 }
@@ -20,7 +21,8 @@ export const getShortUrl = async (req, res)=>{
     shortUrl.clicks++;
     shortUrl.save();
 
-    res.redirect(shortUrl.fullUrl);
+    const redirectUrl = shortUrl.fullUrl.includes("https://")?shortUrl.fullUrl:"https://"+shortUrl.fullUrl;
+    return res.redirect(redirectUrl);
 };
 
 export default {
