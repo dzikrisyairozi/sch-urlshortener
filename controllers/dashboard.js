@@ -1,8 +1,9 @@
 import UrlShortener from "../models/urlShortener.js";
+import user from "../models/user.js";
 
 const getDashboard = async (req, res) => {
   // Add authentication to check if username is logged in
-  const shortUrls = await UrlShortener.find();
+  const shortUrls = await UrlShortener.find({author: user.email});
   return res.render("dashboard", { shortUrls: shortUrls });
 };
 

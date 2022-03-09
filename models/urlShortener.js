@@ -15,6 +15,11 @@ const urlShortenerSchema = new mongoose.Schema({
         type: Number,
         required: true,
         default : 0
+    },
+    author:{
+        type: String,
+        required: true,
+        default: null
     }
 })
 

@@ -9,7 +9,6 @@ export const requireAuth = (req, res, next) => {
     jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
       if (err) {
         console.log(err.message);
-        console.log("asdasdasdasdasdasdadsdasd\n");
         res.redirect('/auth/login');
       } else {
         console.log(decodedToken);
@@ -32,7 +31,9 @@ export const checkUser = (req, res, next) => {
         } else {
           let user = await User.findById(decodedToken.id);
           res.locals.user = user;
-          console.log(user);
+          // req.author = decodedToken._.id;
+          // console.log(decodedToken);
+          // console.log("\n\n\n")
           next();
         }
       });
