@@ -82,9 +82,15 @@ export const signup_get = (req, res) => {
   
 }
 
+export const logout_get = (req, res) => {
+  res.cookie('jwt', '', { maxAge: 1 });
+  res.redirect('/');
+}
+
 export default {
     signup_get,
     login_get,
     signup_post,
-    login_post
+    login_post,
+    logout_get
 }
