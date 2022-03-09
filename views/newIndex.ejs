@@ -1,37 +1,47 @@
 <%- include('partials/header') -%>
 <body class="d-flex h-100 text-center text-white bg-dark"></body>
 <div>
-    <div class="bg-image"
+  <div
+    class="bg-image"
     style="
       background-image: url(../public/home-sch-bg.png);
       height: 100vh;
       width: 100vw;
-    ">
-        <!-- <header class="mb-auto">
-        <div>
-            <h3 class="float-md-start mb-0">Cover</h3>
-        </div>
-        </header> -->
-    
-        <main class="text-start">
+    "
+  >
+    <div>
+      <main class="text-start">
         <h1>SHORT YOUR SCH LINKS!</h1>
         <p class="lead">SCHEMATICS</p>
-        </main>
-        
-        <div class="mt-10">
-            <form action="/shortener" method="POST" class="form-inline my-4 text-start">
-                <label for="fullUrl" class="sr-only"></label>
-                <input required placeholder="Paste your link here!" name="fullUrl" id="fullUrl" class="col mr-3 my-3">
-                <button type="submit" class="btn btn-success">Generate</button>
-            </form>
-        </div>
+        <a role="button" onclick="customInputGenerator()">Use custom link</a>
+      </main>
 
-        <footer class="mt-auto text-white-50 text-start">
-            <p>@Schematics ITS 2022</p>
-        </footer>
+      <div class="mt-15">
+        <form
+          id=""
+          action="/shortener"
+          method="POST"
+          class="form-inline my-4 text-start"
+        >
+          <div id="homeInput">
+            <label for="fullUrl" class="sr-only"></label>
+            <input
+              required
+              placeholder="Paste your link here!"
+              name="fullUrl"
+              id="fullUrl"
+              class="col mr-3 my-3"
+            />
+          </div>
+          <button id="generateHome" type="submit" class="btn btn-success">Generate</button>
+        </form>
+      </div>
+
+      <footer class="mt-auto text-white-50 text-start">
+        <p>@Schematics ITS 2022</p>
+      </footer>
     </div>
-
+  </div>
 </div>
-
 
 <%- include('partials/footer') -%>

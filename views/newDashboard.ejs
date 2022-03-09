@@ -80,7 +80,7 @@
                   </td>
                   <td style="padding: 0 !important;">
                       <div class="collapse" id="<%= urlShortener.shortUrl %>">
-                          <input id="<%= urlShortener.shortUrl %>short" type="text" value="<%= urlShortener.shortUrl %>"/>
+                          <input id="<%= urlShortener.shortUrl %>short" type="text" pattern="^[a-zA-Z][a-zA-Z0-9.,$;]+" required="true" value="<%= urlShortener.shortUrl %>"/>
                           <p id="shortWarning"></p>
                       </div>
                   </td>
