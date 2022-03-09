@@ -27,18 +27,18 @@ export const checkUser = (req, res, next) => {
       jwt.verify(token, 'net ninja secret', async (err, decodedToken) => {
         if (err) {
           res.locals.user = null;
+          console.log("iz null bois");
           next();
         } else {
           let user = await User.findById(decodedToken.id);
           res.locals.user = user;
-          // req.author = decodedToken._.id;
-          // console.log(decodedToken);
-          // console.log("\n\n\n")
+          req.user = user;
           next();
         }
       });
     } else {
       res.locals.user = null;
+      console.log("iz null bois");
       next();
     }
   };

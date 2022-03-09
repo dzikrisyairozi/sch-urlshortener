@@ -2,6 +2,7 @@ import UrlShortener from '../models/urlShortener.js'
 
 export const getHome = async (req, res) => {
     const shortUrls = await UrlShortener.find();
+
     return res.render(
         'newIndex',
         // 'index',

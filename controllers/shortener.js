@@ -1,19 +1,20 @@
 import urlShortener from '../models/urlShortener.js';
-import UrlShortener from '../models/urlShortener.js'
+import authController from '../controllers/auth.js'
 import user from '../models/user.js';
 
 export const postShortener = async (req, res) =>{
     const fullUrl = req.body.fullUrl;
     const shortUrl = req.body.shortUrl;
-    console.log(res.locals.user);
-    if(shortUrl){
-        const shortExist = await UrlShortener.findOne({shortUrl : shortUrl});
+    const userId = authController.parseJwt(req.cookies.jwt);
+    console.log(userId.id);
+    if(shortUrl && userId.id){
+        const shortExist = await urlShortener.findOne({shortUrl : shortUrl});
         if(shortExist){
             return res.send("err");
         }
         else{
             try{
-                await urlShortener.create({shortUrl: shortUrl, fullUrl : fullUrl, author : user.email || "hmm"});
+                await urlShortener.create({shortUrl: shortUrl, fullUrl : fullUrl, author : userId.id});
                 return res.redirect("/");
             }
             catch(err){
@@ -21,8 +22,9 @@ export const postShortener = async (req, res) =>{
             }
         }
     }
-    await UrlShortener.create({ 
-        fullUrl: fullUrl
+    await urlShortener.create({ 
+        fullUrl: fullUrl,
+        author: userId.id
     });
     return res.redirect('/');
 };

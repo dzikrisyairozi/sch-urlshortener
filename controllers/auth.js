@@ -86,10 +86,19 @@ export const logout_get = (req, res) => {
   res.redirect('/');
 }
 
+export const parseJwt = (token) => {
+  try {
+    return JSON.parse(atob(token.split('.')[1]));
+  } catch (e) {
+    return null;
+  }
+};
+
 export default {
     signup_get,
     login_get,
     signup_post,
     login_post,
-    logout_get
+    logout_get,
+    parseJwt
 }
