@@ -17,12 +17,12 @@ const { requireAuth, checkUser } = reqAuth;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
 
 app.get('*', checkUser);
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);
 app.use('/auth', authRoutes);
-app.use(cookieParser());
 
 const start =  (req, res) => {
     try{
