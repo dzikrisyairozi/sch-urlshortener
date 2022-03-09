@@ -1,5 +1,6 @@
 import mongoose from 'mongoose'
 import pkg from 'validator'
+import bcrypt from 'bcrypt'
 
 const { isEmail } = pkg;
 

@@ -53,7 +53,6 @@ export const signup_get = (req, res) => {
   
   export const signup_post = async (req, res) => {
     const { email, password } = req.body;
-
     try {
         const user = await User.create({ email, password });
         const token = createToken(user._id);
