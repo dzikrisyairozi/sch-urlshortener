@@ -6,9 +6,10 @@ export const requireAuth = (req, res, next) => {
 
   // check json web token exists & is verified
   if (token) {
-    jwt.verify(token, 'sch url shortener', (err, decodedToken) => {
+    jwt.verify(token, 'net ninja secret', (err, decodedToken) => {
       if (err) {
         console.log(err.message);
+        console.log("asdasdasdasdasdasdadsdasd\n");
         res.redirect('/auth/login');
       } else {
         console.log(decodedToken);
