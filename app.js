@@ -4,6 +4,7 @@ import cookieParser from 'cookie-parser'
 import homeRoutes from './routes/home.js'
 import shortenerRoutes from './routes/shortener.js'
 import authRoutes from './routes/auth.js'
+import reqAuth from './middleware/auth.js'
 
 mongoose.connect('mongodb://localhost/urlShortener', {
     useNewUrlParser: true,
@@ -12,6 +13,7 @@ mongoose.connect('mongodb://localhost/urlShortener', {
 
 const app = express();
 const PORT = process.env.PORT || 8000;
+const { requireAuth } = reqAuth;
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
