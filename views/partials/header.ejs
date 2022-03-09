@@ -9,3 +9,15 @@
 </head>
 <body>
     <div class="container">
+        <nav>
+        <h1>URL Shortener</h1>
+        <ul>
+            <% if (user) { %>
+              <li>Welcome, <%= user.email %></li>
+              <li><a href="/logout">Log out</a></li>
+            <% } else { %>
+              <li><a href="/login">Log in</a></li>
+              <li><a href="/signup" class="btn">Sign up</a></li>
+            <% } %>
+          </ul>
+        </nav>

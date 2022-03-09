@@ -1,12 +1,5 @@
 <%- include('partials/header') -%>
 
-        <h1>URL Shortener</h1>
-        <ul>
-            <li><a href="/logout">Log out</a></li>
-            <li><a href="/login">Log in</a></li>
-            <li><a href="/signup" class="btn">Sign up</a></li>
-          </ul>
-        </nav>
         <form action="/shortener" method="POST" class="form-inline my-4">
             <label for="fullUrl" class="sr-only"></label>
             <input required placeholder="Paste your link here!" name="fullUrl" id="fullUrl" class="col mr-3 my-3">
