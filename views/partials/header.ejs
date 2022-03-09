@@ -59,10 +59,10 @@
         <ul>
             <% if (user) { %>
               <li>Welcome, <%= user.email %></li>
-              <li><a href="auth/logout">Log out</a></li>
+              <li><a href="/auth/logout">Log out</a></li>
             <% } else { %>
-              <li><a href="auth/login">Log in</a></li>
-              <li><a href="auth/signup" class="btn">Sign up</a></li>
+              <li><a href="/auth/login">Log in</a></li>
+              <li><a href="/auth/signup" class="btn">Sign up</a></li>
             <% } %>
           </ul>
         </nav>
