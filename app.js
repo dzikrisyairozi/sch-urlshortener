@@ -6,11 +6,15 @@ import shortenerRoutes from './routes/shortener.js'
 import authRoutes from './routes/auth.js'
 import reqAuth from './middleware/auth.js'
 import dashboardRoutes from './routes/dashboard.js'
+import dotenv from 'dotenv'
 
-mongoose.connect('mongodb://localhost/urlShortener', {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-})
+dotenv.config();
+// mongoose.connect('mongodb://localhost/urlShortener', {
+//     useNewUrlParser: true,
+//     useUnifiedTopology: true
+// })
+
+mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => console.log('connected to db!'));
 
 const app = express();
 const PORT = process.env.PORT || 8000;
