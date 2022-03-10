@@ -6,8 +6,13 @@ import jwt from 'jsonwebtoken'
 const getDashboard = async (req, res) => {
   // const userId = authController.parseJwt(req.cookies.jwt);
   const userId = jwt.decode(req.cookies.jwt);
-  const shortUrls = await UrlShortener.find({ author: userId.id });
-  return res.render("dashboard", { shortUrls: shortUrls });
+  try{
+    const shortUrls = await UrlShortener.find({ author: userId.id });
+    return res.render("dashboard", { shortUrls: shortUrls });
+  }
+  catch(err){
+    return res.send(err);
+  }
 };
 
 const deleteUrl = async (req, res) => {
