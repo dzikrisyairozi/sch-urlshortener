@@ -3,12 +3,24 @@ import user from "../models/user.js";
 import authController from "../controllers/auth.js";
 import jwt from 'jsonwebtoken'
 
-const getDashboard = async (req, res) => {
+const homeGetDashboard = async (req, res) => {
   // const userId = authController.parseJwt(req.cookies.jwt);
   const userId = jwt.decode(req.cookies.jwt);
   try{
     const shortUrls = await UrlShortener.find({ author: userId.id });
     return res.render("dashboard", { shortUrls: shortUrls });
+  }
+  catch(err){
+    return res.send(err);
+  }
+};
+
+const getDashboard = async (req, res) => {
+  // const userId = authController.parseJwt(req.cookies.jwt);
+  const userId = jwt.decode(req.cookies.jwt);
+  try{
+    const shortUrls = await UrlShortener.find({ author: userId.id });
+    return res.json(shortUrls);
   }
   catch(err){
     return res.send(err);
@@ -50,6 +62,7 @@ const updateUrl = async (req, res) => {
 };
 
 export default {
+  homeGetDashboard,
   getDashboard,
   deleteUrl,
   updateUrl,

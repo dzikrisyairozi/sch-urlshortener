@@ -1,7 +1,7 @@
 function handleDelete(id) {
   $.ajax({
     type: "DELETE",
-    url: "/dashboard",
+    url: "/api/dashboard",
     data: { shortUrl: id },
     success: (res) => {
       console.log("success, " + res);
@@ -15,7 +15,7 @@ function handleEdit(originalShortUrl) {
   const shortEditUrl = $(`#${originalShortUrl}short`).val();
   $.ajax({
     type: "PUT",
-    url: "/dashboard",
+    url: "/api/dashboard",
     data: {
       shortUrl: originalShortUrl,
       newShortUrl: shortEditUrl,

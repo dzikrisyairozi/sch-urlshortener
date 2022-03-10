@@ -60,7 +60,7 @@
             <% if (user) { %>
               <ul>Welcome, <%= user.email %></ul>
               <ul><a href="/dashboard">GO TO DASHBOARD</a></ul>
-              <ul><a href="/auth/logout">Log out</a></ul>
+              <ul><a href="/api/auth/logout">Log out</a></ul>
             <% } else { %>
               <li><a href="/auth/login">Log in</a></li>
               <li><a href="/auth/signup" class="btn">Sign up</a></li>
