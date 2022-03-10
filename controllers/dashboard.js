@@ -16,25 +16,37 @@ const getDashboard = async (req, res) => {
 };
 
 const deleteUrl = async (req, res) => {
-  const shortUrl = await UrlShortener.findOneAndDelete({
-    shortUrl: req.body.shortUrl,
-  });
-  return res.redirect("/");
+  try{
+    const shortUrl = await UrlShortener.findOneAndDelete({
+      shortUrl: req.body.shortUrl,
+    });
+    return res.redirect("/");
+  }
+  catch(err){
+    return res.send(err);
+  }
+
 };
 
 const updateUrl = async (req, res) => {
   const { shortUrl, newShortUrl, newFullUrl } = req.body;
-  const checkShortUrl = await UrlShortener.findOne({
-    shortUrl: newShortUrl,
-  });
-  if (!checkShortUrl || shortUrl == newShortUrl) {
-    const updater = await UrlShortener.findOneAndUpdate(
-      { shortUrl: shortUrl },
-      { shortUrl: newShortUrl, fullUrl: newFullUrl }
-    );
-    return res.send("success");
+  try{
+    const checkShortUrl = await UrlShortener.findOne({
+      shortUrl: newShortUrl,
+    });
+    if (!checkShortUrl || shortUrl == newShortUrl) {
+      const updater = await UrlShortener.findOneAndUpdate(
+        { shortUrl: shortUrl },
+        { shortUrl: newShortUrl, fullUrl: newFullUrl }
+      );
+      return res.send("success");
+    }
+    return res.send("Short URL already exists, please change to a new one");
   }
-  return res.send("Short URL already exists, please change to a new one");
+  catch(err){
+    return res.send(err);
+  }
+
 };
 
 export default {
