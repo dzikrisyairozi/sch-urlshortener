@@ -7,27 +7,36 @@ export const postShortener = async (req, res) =>{
     const fullUrl = req.body.fullUrl;
     const shortUrl = req.body.shortUrl;
     var userId = jwt.decode(req.cookies.jwt);
-    userId = userId?userId.id:userId;
-    if(shortUrl){
-        const shortExist = await urlShortener.findOne({shortUrl : shortUrl});
-        if(shortExist){
-            return res.send("Short URL already exists, please change the short URL");
-        }
-        else{
-            try{
-                await urlShortener.create({shortUrl: shortUrl, fullUrl : fullUrl, author : userId});
-                return res.redirect("/");
+    try{
+        userId = userId?userId.id:userId;
+        if(shortUrl){
+            const shortExist = await urlShortener.findOne({shortUrl : shortUrl});
+            if(shortExist){
+                return res.send("Short URL already exists, please change the short URL");
             }
-            catch(err){
-                return res.send(err);
+            else{
+                try{
+                    await urlShortener.create({
+                        shortUrl: shortUrl, 
+                        fullUrl : fullUrl, 
+                        author : userId
+                    });
+                    return res.redirect("/");
+                }
+                catch(err){
+                    return res.send(err);
+                }
             }
         }
+        await urlShortener.create({ 
+            fullUrl: fullUrl,
+            author: userId
+        });
+        return res.redirect('/');
     }
-    await urlShortener.create({ 
-        fullUrl: fullUrl,
-        author: userId
-    });
-    return res.redirect('/');
+    catch(err){
+        return res.send(err);
+    }
 };
 
 export default {
