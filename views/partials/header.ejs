@@ -58,8 +58,9 @@
         <h1>URL Shortener</h1>
         <ul>
             <% if (user) { %>
-              <li>Welcome, <%= user.email %></li>
-              <li><a href="/auth/logout">Log out</a></li>
+              <ul>Welcome, <%= user.email %></ul>
+              <ul><a href="/dashboard">GO TO DASHBOARD</a></ul>
+              <ul><a href="/auth/logout">Log out</a></ul>
             <% } else { %>
               <li><a href="/auth/login">Log in</a></li>
               <li><a href="/auth/signup" class="btn">Sign up</a></li>
