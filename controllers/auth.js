@@ -44,11 +44,21 @@ const createToken = (id) => {
 };
 
 export const signup_get = (req, res) => {
+  try{
     return res.render('signup');
+  }
+  catch(err){
+    return res.send(err);
+  }
 }
   
-  export const login_get = (req, res) => {
-    res.render('login');
+export const login_get = (req, res) => {
+  try{
+    return res.render('login');
+  }
+  catch(err){
+    return res.send(err);
+  }
 }
   
   export const signup_post = async (req, res) => {
@@ -82,8 +92,14 @@ export const signup_get = (req, res) => {
 }
 
 export const logout_get = (req, res) => {
-  res.cookie('jwt', '', { maxAge: 1 });
-  res.redirect('/');
+  try{
+    res.cookie('jwt', '', { maxAge: 1 });
+    res.redirect('/');
+  }
+  catch (err) {
+    return res.send(err);
+  }
+
 }
 
 // function parseJwt (token) {
