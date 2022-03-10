@@ -6,11 +6,10 @@ export const postShortener = async (req, res) =>{
     const fullUrl = req.body.fullUrl;
     const shortUrl = req.body.shortUrl;
     const userId = authController.parseJwt(req.cookies.jwt);
-    console.log(userId.id);
     if(shortUrl && userId.id){
         const shortExist = await urlShortener.findOne({shortUrl : shortUrl});
         if(shortExist){
-            return res.send("err");
+            return res.send("Short URL already exists, please change the short URL");
         }
         else{
             try{

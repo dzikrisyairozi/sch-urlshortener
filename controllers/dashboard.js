@@ -3,7 +3,6 @@ import user from "../models/user.js";
 import authController from "../controllers/auth.js";
 
 const getDashboard = async (req, res) => {
-  // Add authentication to check if username is logged in
   const userId = authController.parseJwt(req.cookies.jwt);
   const shortUrls = await UrlShortener.find({ author: userId.id });
   return res.render("dashboard", { shortUrls: shortUrls });

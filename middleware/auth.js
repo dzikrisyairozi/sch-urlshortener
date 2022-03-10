@@ -11,7 +11,6 @@ export const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.redirect('/auth/login');
       } else {
-        console.log(decodedToken);
         next();
       }
     });
@@ -27,7 +26,7 @@ export const checkUser = (req, res, next) => {
       jwt.verify(token, 'net ninja secret', async (err, decodedToken) => {
         if (err) {
           res.locals.user = null;
-          console.log("iz null bois");
+          // console.log("iz null bois");
           next();
         } else {
           let user = await User.findById(decodedToken.id);
@@ -38,7 +37,7 @@ export const checkUser = (req, res, next) => {
       });
     } else {
       res.locals.user = null;
-      console.log("iz null bois");
+      // console.log("iz null bois");
       next();
     }
   };
