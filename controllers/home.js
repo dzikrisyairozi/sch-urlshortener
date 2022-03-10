@@ -1,27 +1,23 @@
 import UrlShortener from '../models/urlShortener.js'
 
-export const getHome = async (req, res) => {
-    try{
-        const shortUrls = await UrlShortener.find();
-
-        return res.render(
-            'newIndex',
-            // 'index',
-            { shortUrls: shortUrls }
-        );
-    }
-    catch(err){
-        return res.send(err);
-    }
-}
+// Forbidden
+// export const getHome = async (req, res) => {
+//     try{
+//         const shortUrls = await UrlShortener.find();
+//         return res.status(201).json(shortUrls);
+//     }
+//     catch(err){
+//         return res.send(err);
+//     }
+// }
 
 export const getShortUrl = async (req, res)=>{
     try{
         const shortUrl = await UrlShortener.findOne({ shortUrl: req.params.shortUrl })
-        if ( shortUrl == null ) {
-            return res.sendStatus(404).json({
+        if (!shortUrl) {
+            return res.status(404).json({
                 success: false,
-                msg : 'URL nor found!'
+                msg : 'URL not found!'
             });
         }
     
@@ -37,6 +33,5 @@ export const getShortUrl = async (req, res)=>{
 };
 
 export default {
-    getHome,
     getShortUrl
 };

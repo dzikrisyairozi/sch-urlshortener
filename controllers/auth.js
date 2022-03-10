@@ -42,24 +42,6 @@ const createToken = (id) => {
     expiresIn: maxAge
   });
 };
-
-export const signup_get = (req, res) => {
-  try{
-    return res.render('signup');
-  }
-  catch(err){
-    return res.send(err);
-  }
-}
-  
-export const login_get = (req, res) => {
-  try{
-    return res.render('login');
-  }
-  catch(err){
-    return res.send(err);
-  }
-}
   
   export const signup_post = async (req, res) => {
     const { email, password } = req.body;
@@ -94,7 +76,7 @@ export const login_get = (req, res) => {
 export const logout_get = (req, res) => {
   try{
     res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/');
+    return res.send("Logged out");
   }
   catch (err) {
     return res.send(err);
@@ -113,8 +95,6 @@ export const logout_get = (req, res) => {
 // };
 
 export default {
-    signup_get,
-    login_get,
     signup_post,
     login_post,
     logout_get,

@@ -6,6 +6,7 @@ import shortenerRoutes from './routes/shortener.js'
 import authRoutes from './routes/auth.js'
 import reqAuth from './middleware/auth.js'
 import dashboardRoutes from './routes/dashboard.js'
+import viewRoutes from './routes/view.js'
 import dotenv from 'dotenv'
 
 dotenv.config();
@@ -27,6 +28,7 @@ app.use(cookieParser());
 
 app.get('*', checkUser);
 app.use("/public",express.static("public"));
+app.use('/view', viewRoutes);
 app.use('/dashboard', requireAuth, dashboardRoutes);
 app.use('/', homeRoutes);
 app.use('/shortener', shortenerRoutes);

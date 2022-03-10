@@ -21,7 +21,7 @@ export const postShortener = async (req, res) =>{
                         fullUrl : fullUrl, 
                         author : userId
                     });
-                    return res.redirect("/");
+                    return res.status(201).send("URL successfully shortened");
                 }
                 catch(err){
                     return res.send(err);
@@ -32,7 +32,7 @@ export const postShortener = async (req, res) =>{
             fullUrl: fullUrl,
             author: userId
         });
-        return res.redirect('/');
+        return res.status(201).send("URL successfully shortened");
     }
     catch(err){
         return res.send(err);
