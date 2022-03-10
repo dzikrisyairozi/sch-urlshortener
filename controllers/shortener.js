@@ -1,11 +1,12 @@
 import urlShortener from '../models/urlShortener.js';
 import authController from '../controllers/auth.js'
 import user from '../models/user.js';
+import jwt from 'jsonwebtoken'
 
 export const postShortener = async (req, res) =>{
     const fullUrl = req.body.fullUrl;
     const shortUrl = req.body.shortUrl;
-    var userId = authController.parseJwt(req.cookies.jwt);
+    var userId = jwt.decode(req.cookies.jwt);
     userId = userId?userId.id:userId;
     if(shortUrl){
         const shortExist = await urlShortener.findOne({shortUrl : shortUrl});
