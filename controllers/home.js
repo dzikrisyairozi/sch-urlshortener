@@ -7,7 +7,7 @@ export const getHome = async (req, res) => {
         return res.render(
             'newIndex',
             // 'index',
-            { shortUrls: shortUrls }
+            { url: "local" }
         );
     }
     catch(err){
