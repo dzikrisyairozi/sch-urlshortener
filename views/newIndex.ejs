@@ -3,8 +3,8 @@
 <nav>
 <ul>
   <% if (user) { %>
-    <ul>Welcome, <%= user.email %></ul>
-    <ul><a href="/dashboard">GO TO DASHBOARD</a></ul>
+    <ul class="text-white">Welcome, <%= user.email %></ul>
+    <ul><a href="/dashboard">Dashboard</a></ul>
     <ul><a href="/logout">Log out</a></ul>
   <% } else { %>
       <li><a href="/login">Log in</a></li>
