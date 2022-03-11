@@ -48,7 +48,11 @@
           <button id="generateHome" type="submit" class="btn btn-success">Generate</button>
         </form>
       </div>
-
+      <div>
+        <% if(url){ %>
+          <a href=/<%= url.shortUrl %>><p class="text-white mx-auto">localhost:8000/<%= url.shortUrl %></p></a>
+      <% } %>  
+      </div>
       <footer class="mt-auto text-white-50 text-start">
         <p>@Schematics ITS 2022</p>
       </footer>

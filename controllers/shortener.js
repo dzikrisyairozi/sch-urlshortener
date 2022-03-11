@@ -32,7 +32,8 @@ export const postShortener = async (req, res) =>{
             fullUrl: fullUrl,
             author: userId
         });
-        return res.json(createdUrl);
+        console.log(req.url);
+        return res.render('newIndex', {url : createdUrl, user : null});
     }
     catch(err){
         return res.send(err);
