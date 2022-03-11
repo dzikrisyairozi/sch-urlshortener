@@ -19,7 +19,7 @@ export const getShortUrl = async (req, res)=>{
     try{
         const shortUrl = await UrlShortener.findOne({ shortUrl: req.params.shortUrl })
         if ( shortUrl == null ) {
-            return res.sendStatus(404).json({
+            return res.status(404).json({
                 success: false,
                 msg : 'URL nor found!'
             });

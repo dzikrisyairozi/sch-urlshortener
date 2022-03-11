@@ -20,7 +20,7 @@ const getDashboard = async (req, res) => {
   const userId = jwt.decode(req.cookies.jwt);
   try{
     const shortUrls = await UrlShortener.find({ author: userId.id });
-    return res.json(shortUrls);
+    return res.status(201).json(shortUrls);
   }
   catch(err){
     return res.send(err);
@@ -32,7 +32,7 @@ const deleteUrl = async (req, res) => {
     const shortUrl = await UrlShortener.findOneAndDelete({
       shortUrl: req.body.shortUrl,
     });
-    return res.redirect("/");
+    return res.status(201).send("URL successfully deleted");
   }
   catch(err){
     return res.send(err);

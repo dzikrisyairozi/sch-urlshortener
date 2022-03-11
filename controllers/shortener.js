@@ -16,23 +16,23 @@ export const postShortener = async (req, res) =>{
             }
             else{
                 try{
-                    await urlShortener.create({
+                    const createdUrl = await urlShortener.create({
                         shortUrl: shortUrl, 
                         fullUrl : fullUrl, 
                         author : userId
                     });
-                    return res.redirect("/");
+                    return res.json(createdUrl);
                 }
                 catch(err){
                     return res.send(err);
                 }
             }
         }
-        await urlShortener.create({ 
+        const createdUrl = await urlShortener.create({ 
             fullUrl: fullUrl,
             author: userId
         });
-        return res.redirect('/');
+        return res.json(createdUrl);
     }
     catch(err){
         return res.send(err);

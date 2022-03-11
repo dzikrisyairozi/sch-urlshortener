@@ -94,7 +94,7 @@ export const login_get = (req, res) => {
 export const logout_get = (req, res) => {
   try{
     res.cookie('jwt', '', { maxAge: 1 });
-    res.redirect('/');
+    res.status(201).send('User logged out');
   }
   catch (err) {
     return res.send(err);
