@@ -1,6 +1,6 @@
 import urlShortener from '../models/urlShortener.js';
-import authController from '../controllers/auth.js'
-import user from '../models/user.js';
+import homeController from '../controllers/home.js'
+import User from '../models/user.js';
 import jwt from 'jsonwebtoken'
 
 export const postShortener = async (req, res) =>{
@@ -21,7 +21,8 @@ export const postShortener = async (req, res) =>{
                         fullUrl : fullUrl, 
                         author : userId
                     });
-                    return res.json(createdUrl);
+                    const user = await User.findById(userId);
+                    return res.render('newIndex', {url : createdUrl, user : user});
                 }
                 catch(err){
                     return res.send(err);
@@ -32,8 +33,8 @@ export const postShortener = async (req, res) =>{
             fullUrl: fullUrl,
             author: userId
         });
-        console.log(req.url);
-        return res.render('newIndex', {url : createdUrl, user : null});
+        const user = await User.findById(userId);
+        return res.render('newIndex', {url : createdUrl, user : user});
     }
     catch(err){
         return res.send(err);
