@@ -1,4 +1,16 @@
 <%- include('partials/header') -%>
+<ul>
+  <% if (user) { %>
+    <ul>Welcome, <%= user.email %></ul>
+    <ul><a href="/dashboard">GO TO DASHBOARD</a></ul>
+    <ul><a href="/logout">Log out</a></ul>
+  <% } else { %>
+      <li><a href="/login">Log in</a></li>
+      <li><a href="/signup">Sign up</a></li>
+    <% } %>
+  </ul>
+</nav>     
+
 <body class="d-flex h-100 text-center text-white bg-dark"></body>
 <div>
   <div
