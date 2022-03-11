@@ -45,7 +45,7 @@ const createToken = (id) => {
 
 export const signup_get = (req, res) => {
   try{
-    return res.render('signup');
+    return res.render('newSignup');
   }
   catch(err){
     return res.send(err);
