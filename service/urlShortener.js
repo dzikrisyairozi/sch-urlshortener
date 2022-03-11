@@ -31,6 +31,14 @@ class UrlShortenerService {
 
         return updatedShortUrl;
     }
+
+    async userLogin(email, password){
+        const dataLogin = await this.urlShortenerModel.login(email, password);
+
+        return dataLogin;
+    }
+
+
 }
 
 export default UrlShortenerService;

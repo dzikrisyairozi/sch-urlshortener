@@ -1,5 +1,6 @@
 import User from "../models/user.js"
 import jwt from "jsonwebtoken"
+import UrlShortenerService from '../service/urlShortener.js'
 
 //handle error
 const handleErrors = (err) => {
@@ -63,8 +64,9 @@ export const login_get = (req, res) => {
   
   export const signup_post = async (req, res) => {
     const { email, password } = req.body;
+    const userServiceInstance = new UrlShortenerService(User);
     try {
-        const user = await User.create({ email, password });
+        const user = await userServiceInstance.createShortUrl({ email, password });
         const token = createToken(user._id);
         res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
         res.status(201).json( { user: user._id });
