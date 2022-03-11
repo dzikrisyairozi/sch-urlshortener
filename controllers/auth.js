@@ -54,7 +54,7 @@ export const signup_get = (req, res) => {
   
 export const login_get = (req, res) => {
   try{
-    return res.render('login');
+    return res.render('newLogin');
   }
   catch(err){
     return res.send(err);
