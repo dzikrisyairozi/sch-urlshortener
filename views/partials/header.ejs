@@ -53,17 +53,19 @@
     <link href="/public/dashboard.css" rel="stylesheet" />
 </head>
 <body>
-    <div class="container">
-        <nav>
-        <h1>URL Shortener</h1>
-        <ul>
-            <% if (user) { %>
-              <ul>Welcome, <%= user.email %></ul>
-              <ul><a href="/dashboard">GO TO DASHBOARD</a></ul>
-              <ul><a href="/api/auth/logout">Log out</a></ul>
-            <% } else { %>
-              <li><a href="/auth/login">Log in</a></li>
-              <li><a href="/auth/signup" class="btn">Sign up</a></li>
-            <% } %>
-          </ul>
-        </nav>
+  <div>
+    <div
+      class="bg-image"
+      style="
+        background-image: url(../public/home-sch-bg.png);
+        height: 100vh;
+        width: 100vw;
+      "
+    >
+  <div class="header">
+    <a href="/">
+      <div><img src="../public/sch-logo.png" alt="sch-logo" style="float: left; width: 100px; height: 100px;"></div>
+    </a>
+    <h1 style="position: relative; top: 18px; left: 10px; color: white; ">URL Shortener</h1>
+</div>
+
