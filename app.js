@@ -4,19 +4,20 @@ import cookieParser from 'cookie-parser'
 import homeRoutes from './routes/home.js'
 import reqAuth from './middleware/auth.js'
 import apiRoutes from './routes/api.js'
+import config from './config/index.js'
 import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config;
+
 // mongoose.connect('mongodb://localhost/urlShortener', {
 //     useNewUrlParser: true,
 //     useUnifiedTopology: true
 // })
 
-mongoose.connect(process.env.DB_CONNECT, { useNewUrlParser: true }, () => console.log('connected to db!'));
-
 const app = express();
-const PORT = process.env.PORT || 8000;
 const { requireAuth, checkUser } = reqAuth;
+
+mongoose.connect(config.dbUrl, { useNewUrlParser: true }, () => console.log('connected to db!'));
 
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false }));
@@ -30,7 +31,7 @@ app.use('/api', apiRoutes);
 
 const start =  (req, res) => {
     try{
-        app.listen(PORT, console.log(`Server running on port: http://localhost:${PORT}`));
+        app.listen(config.PORT, console.log(`Server running on port: http://localhost:${config.PORT}`));
     }catch(err){
         console.log(err);
     }
