@@ -1,4 +1,6 @@
 <%- include('partials/header') -%>
+
+<nav>
 <ul>
   <% if (user) { %>
     <ul>Welcome, <%= user.email %></ul>
@@ -10,8 +12,6 @@
     <% } %>
   </ul>
 </nav>     
-
-<body class="d-flex h-100 text-center text-white bg-dark"></body>
 <div>
   <div
     class="bg-image"
@@ -23,9 +23,9 @@
   >
     <div>
       <main class="text-start">
-        <h1>SHORT YOUR SCH LINKS!</h1>
-        <p class="lead">SCHEMATICS</p>
-        <a role="button" onclick="customInputGenerator()">Use custom link</a>
+        <h1 style="color: white; ">SHORT YOUR SCH LINKS!</h1>
+        <p class="lead" style="color: white;">SCHEMATICS</p>
+        <a role="button" onclick="customInputGenerator()"style="color: white;" >Use custom link</a>
       </main>
 
       <div class="mt-15">
